@@ -22,7 +22,7 @@ public class Player extends GameObject {
     // Generel
     public int colour;
     public boolean canMove;
-    private boolean falling;
+    private boolean falling = true;
     private boolean jumping = false;
     private boolean slowed = false;
     private float timer = 0;
@@ -132,7 +132,7 @@ public class Player extends GameObject {
 
             if(falling && !jumping)
             {
-                GameView.moveObjectY((int)(StaticValues.Instance().WORLD_GRAVITY * StaticValues.Instance().deltaTime));
+                GameView.moveObjectY((int)-(0.5f * StaticValues.Instance().deltaTime));
 //                pos.y += StaticValues.Instance().WORLD_GRAVITY * StaticValues.Instance().deltaTime;
             }
 
@@ -312,8 +312,7 @@ public class Player extends GameObject {
             {
                 if (go.getRect() != null)
                 {
-                    Rect r = new Rect(_p.x, _p.y, _p.x + 50, _p.y-100);
-                    r.set(rect);
+                    Rect  r = new Rect(pos.x, pos.y+bitmapHeight/2, pos.x+bitmapWidth, pos.y+bitmapHeight);
                     if (Rect.intersects(go.getRect(),r))
                     {
                         return true;
