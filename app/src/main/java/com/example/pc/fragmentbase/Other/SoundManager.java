@@ -45,7 +45,7 @@ public class SoundManager
             AssetManager assetManager = _context.getAssets();
             AssetFileDescriptor descriptor;
 
-            descriptor = assetManager.openFd("firework.ogg");
+            descriptor = assetManager.openFd("fireball.mp3");
             shoot = soundPool.load(descriptor, 0);
 
             // tilføj nye lyde her ved at genbruge de 2 ovenstående linjer med udskiftede variabler

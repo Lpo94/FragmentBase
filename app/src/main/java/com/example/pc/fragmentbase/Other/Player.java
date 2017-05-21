@@ -9,7 +9,10 @@ import android.os.Vibrator;
 import com.example.pc.fragmentbase.MapObjects.FireObject;
 import com.example.pc.fragmentbase.MapObjects.Fireball;
 import com.example.pc.fragmentbase.MapObjects.Goal;
+import com.example.pc.fragmentbase.MapObjects.Ground;
+import com.example.pc.fragmentbase.MapObjects.MapObject;
 import com.example.pc.fragmentbase.MapObjects.Mud;
+import com.example.pc.fragmentbase.MapObjects.Platform;
 import com.example.pc.fragmentbase.MapObjects.PowerUp;
 import com.example.pc.fragmentbase.MapObjects.PowerUpButton;
 import com.example.pc.fragmentbase.R;
@@ -250,6 +253,37 @@ public class Player extends GameObject {
                 speed = 1;
                 slowed = true;
                 timer = 10;
+            }
+
+            if(_other instanceof Ground)
+            {
+                switch(direction)
+                {
+                    case -1:
+                        if(_other.getRect().right > (rect.left + 150) && _other.getRect().bottom > rect.bottom)
+                        {
+                            GameView.moveObjectX(-75);
+                            direction = 0;
+                        }
+                        break;
+                    case 0:
+                        break;
+                    case 1:
+                        if(_other.getRect().right > rect.right && _other.getRect().bottom > rect.bottom)
+                        {
+                            GameView.moveObjectX(75);
+                            direction = 0;
+                        }
+                        break;
+                }
+            }
+
+            if(_other instanceof Platform)
+            {
+                if((_other.getRect().top < rect.bottom && rect.left < _other.getRect().left) || (_other.getRect().top < rect.bottom && rect.right < _other.getRect().right))
+                {
+                    GameView.moveObjectY(1);
+                }
             }
 
             if(_other instanceof Goal)

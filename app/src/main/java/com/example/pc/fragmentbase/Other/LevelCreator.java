@@ -111,9 +111,6 @@ public class LevelCreator {
 
                             RaceCountdownTimer counter = new RaceCountdownTimer(player, new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 5));
                             testLevel.add(counter);
-
-                            PowerUp testFireballPUP1 = new PowerUp(new Point(StaticValues.Instance().SCREEN_WIDTH / 3, StaticValues.Instance().SCREEN_HEIGHT / 2), PowerUp.PowerUpType.fireball);
-                            testLevel.add(testFireballPUP1);
 /*
 /*                            PowerUp testFireballPUP = new PowerUp(new Point(500, 50), PowerUp.PowerUpType.fireball);
                             testLevel.add(testFireballPUP);*/
