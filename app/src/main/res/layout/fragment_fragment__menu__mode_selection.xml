@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnSingleP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/buttons"
+        android:text="Singleplayer"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnBluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
+        android:text="Bluetooth"
+        android:layout_above="@+id/btnBack"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="126dp" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="123dp"
+        android:background="@drawable/buttons"
+        android:text="Back to menu"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/btnSingleP"
+        android:layout_alignStart="@+id/btnSingleP" />
+</RelativeLayout>

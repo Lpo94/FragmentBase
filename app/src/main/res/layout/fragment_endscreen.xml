@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/baggrund"
+    tools:context="com.example.pc.fragmentbase.Fragments.Fragment_Endscreen">
+
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/place4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:background="@drawable/buttons"
+        android:text="Start menu" />
+
+<TextView
+    android:id="@+id/RaceResultsTilte"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text="Race Result:"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true" />
+
+
+    <TextView
+    android:id="@+id/place1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="38dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text="1test"
+    android:layout_below="@+id/RaceResultsTilte" />
+
+    <TextView
+    android:id="@+id/place2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text="2test"
+    android:layout_marginBottom="26dp"
+    android:layout_below="@+id/place1" />
+
+    <TextView
+    android:id="@+id/place3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text="3test"
+    android:layout_below="@+id/place2" />
+
+    <TextView
+    android:id="@+id/place4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text="4test"
+    android:layout_below="@+id/place3"
+    android:layout_marginTop="47dp" />
+
+
+</RelativeLayout>

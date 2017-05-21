@@ -1,0 +1,83 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.pc.fragmentbase.Fragments.Fragment_HowToPlay">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@drawable/baggrund"
+        android:id="@+id/howTo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.lp.androidexam.HowTo">
+
+        <Button
+            android:id="@+id/Previous_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Back_Button"
+            android:layout_toLeftOf="@+id/Back_Button"
+            android:layout_toStartOf="@+id/Back_Button"
+            android:background="@drawable/howtobuttons"
+            android:onClick="Previous"
+            android:text="Previous"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="390dp" />
+
+        <Button
+            android:id="@+id/Back_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/howtobuttons"
+            android:onClick="Back"
+            android:text="Back to Menu"
+            tools:layout_editor_absoluteX="236dp"
+            tools:layout_editor_absoluteY="390dp" />
+
+        <Button
+            android:id="@+id/Next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Back_Button"
+            android:layout_toEndOf="@+id/Back_Button"
+            android:layout_toRightOf="@+id/Back_Button"
+            android:background="@drawable/howtobuttons"
+            android:onClick="Next"
+            android:text="Next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:textSize="20dp"
+            android:textColor="#00FF00"
+            android:text="Dette er en lang text som skal meget gerne skulle kunne være på hele skærmen"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignRight="@+id/Next_button"
+            android:layout_alignEnd="@+id/Next_button" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:text="Tutorial is gonna be fun to make with all this text"
+            android:textSize="20dp"
+            android:textColor="#00FF00"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:layout_marginTop="31dp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

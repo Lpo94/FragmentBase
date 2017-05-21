@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.pc.fragmentbase.Fragments.Fragment_Game">
+
+<!--    <Button
+        android:id="@+id/Start_button_menu"
+        android:layout_width="168dp"
+        android:layout_height="119dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:background="@drawable/buttons"
+        android:text="Start endscreen" />-->
+
+    <SurfaceView
+        android:id="@+id/ourGameview2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" />
+
+    <com.example.pc.fragmentbase.Other.GameView
+        android:id="@+id/ourGameview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"/>
+
+</FrameLayout>
