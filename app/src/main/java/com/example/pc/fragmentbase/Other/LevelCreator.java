@@ -28,8 +28,6 @@ import java.util.ArrayList;
 public class LevelCreator {
     private ArrayList<GameObject> currentLevel= new ArrayList<>();
     private ArrayList<GameObject> testLevel = new ArrayList<>();
-    private int x = 1;
-    private int y = 1;
     private int mapLength;
 
     private int xPos = 1;
@@ -38,7 +36,6 @@ public class LevelCreator {
     AssetManager mngr;
     InputStream is;
     BufferedReader br;
-    String map[][];
     String[] ary;
 
     private String readFromFile(Context context) {
@@ -54,8 +51,6 @@ public class LevelCreator {
 
                 br = new BufferedReader(new InputStreamReader(is));
 
-//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String receiveString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
@@ -76,7 +71,6 @@ public class LevelCreator {
 
     public LevelCreator(int LevelIndex)
     {
-//        staticContext = _context;
         if(StaticValues.Instance().gameObjects.size() != 0) {
             StaticValues.Instance().gameObjects.clear();
         }
@@ -108,38 +102,15 @@ public class LevelCreator {
                             StaticValues.Instance().globalPlayer = player;
                             StaticValues.Instance().allPlayers.add(player);
 
-/*Goal testGoal2 = new Goal(new Point(1000, 1000));
-                         testLevel.add(testGoal2);*/
 
                             RaceCountdownTimer counter = new RaceCountdownTimer(player, new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 5));
                             testLevel.add(counter);
-                            
-/*
-/*                            PowerUp testFireballPUP = new PowerUp(new Point(500, 50), PowerUp.PowerUpType.fireball);
-                            testLevel.add(testFireballPUP);*/
-
-//                            PowerUp testSpeedPUP = new PowerUp(new Point(400, 50), PowerUp.PowerUpType.speed);
-//                            testLevel.add(testSpeedPUP);
-//
-//                          /* Goal testGoal2 = new Goal(new Point(1000, 1000));
-//                            testLevel.add(testGoal2);*/
-
-                 /*           FireObject testfireObject = new FireObject(new Point(800, 50));
-                            testLevel.add(testfireObject);*/
 
                             break;
                         case "B":
                             Mud mud = new Mud(new Point(StaticValues.Instance().gridWidth * xPos, StaticValues.Instance().gridHeight * yPos));
                             testLevel.add(mud);
-/*                                if (_i == 3) {
-                                    xPos = 10500;
-                                    yPos = 800;
-                                }
-                                if (_i < 7) {
-                                    Mud mud = new Mud(new Point(xPos, yPos), 1, 12, R.drawable.mud, 150, 11);
-                                    testLevel.add(mud);
-                                    xPos += 1200;
-                                }*/
+
                             break;
                         case "C":
                             if(groundCheckAroundMe(x, "C") != -1) {
@@ -168,8 +139,7 @@ public class LevelCreator {
                                 Platform platform = new Platform(new Point(StaticValues.Instance().gridWidth * (xPos-multiX), StaticValues.Instance().gridHeight * yPos), new Rect(0, 0, StaticValues.Instance().gridWidth*multiX, StaticValues.Instance().gridHeight), true);
                                 testLevel.add(platform);
                             }
-/*                            PowerUp testFireballPUP2 = new PowerUp(new Point(500, 500), PowerUp.PowerUpType.fireball);
-                            StaticValues.Instance().tempObjects.add(testFireballPUP2);*/
+
                             break;
 
                         case "G":
@@ -185,6 +155,11 @@ public class LevelCreator {
                         case "P":
                             PowerUp testFireballPUP = new PowerUp(new Point(StaticValues.Instance().gridWidth * xPos, StaticValues.Instance().gridHeight * yPos), PowerUp.PowerUpType.fireball);
                             testLevel.add(testFireballPUP);
+                            break;
+
+                        case"S":
+                            PowerUp testSpeedPUP = new PowerUp(new Point(StaticValues.Instance().gridWidth * xPos, StaticValues.Instance().gridHeight * yPos), PowerUp.PowerUpType.speed);
+                            testLevel.add(testSpeedPUP);
                             break;
 
                         case "X":

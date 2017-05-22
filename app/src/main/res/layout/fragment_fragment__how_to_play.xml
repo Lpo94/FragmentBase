@@ -24,7 +24,8 @@
             android:onClick="Previous"
             android:text="Previous"
             tools:layout_editor_absoluteX="60dp"
-            tools:layout_editor_absoluteY="390dp" />
+            tools:layout_editor_absoluteY="390dp"
+            android:textColor="#000000"/>
 
         <Button
             android:id="@+id/Back_Button"
@@ -37,7 +38,8 @@
             android:onClick="Back"
             android:text="Back to Menu"
             tools:layout_editor_absoluteX="236dp"
-            tools:layout_editor_absoluteY="390dp" />
+            tools:layout_editor_absoluteY="390dp"
+            android:textColor="#000000"/>
 
         <Button
             android:id="@+id/Next_button"
@@ -51,32 +53,53 @@
             android:text="Next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
+            android:layout_width="500dp"
+            android:layout_height="150dp"
             android:textSize="20dp"
-            android:textColor="#00FF00"
-            android:text="Dette er en lang text som skal meget gerne skulle kunne være på hele skærmen"
+            android:textColor="#0000FF"
+            android:text="This game is a speedrunning game which means you have to clear the level as fast as possible or if your playing with friends, be the first in goal. In the levels there will be powerups, that will help you, or your foes achieve victory. Also there will be hindrances such as walls, fire or mud that will slow you down."
             android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-            android:layout_alignBaseline="@+id/textView2"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_alignRight="@+id/Next_button"
-            android:layout_alignEnd="@+id/Next_button" />
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:text="Tutorial is gonna be fun to make with all this text"
-            android:textSize="20dp"
-            android:textColor="#00FF00"
+            android:layout_width="500dp"
+            android:layout_height="150dp"
+            android:text="The way your move is you touch the screen in the side that you want your player to move. You can make your character jump by doing a double tap on your screen. There will be a green button under your player, that is your power-up button, you use it by collecting one of the power-ups on the level and then press it."
+            android:textSize="20sp"
+            android:textColor="#0000FF"
+            android:textAlignment="center"
+            android:layout_marginTop="40dp"
             android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:layout_marginTop="31dp" />
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="500dp"
+            android:layout_height="175dp"
+            android:text="Singleplayer: In this mode it is a time against time, see how fast you can get through the level and maybe beat your old record. \nMultiplayer: Make a bluetooth connection with your friend and be the first in goal to beat them, make use of the fireball powerup to stun them or run past them with the speed powerup."
+            android:textSize="20sp"
+            android:textColor="#0000FF"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="400dp"
+            android:layout_height="30dp"
+            android:text="Gameplay"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FE2E2E"/>
 
     </RelativeLayout>
 

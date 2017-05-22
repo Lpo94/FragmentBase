@@ -15,7 +15,8 @@
         android:layout_marginTop="53dp"
         android:background="@drawable/buttons"
         android:onClick="Start"
-        android:text="Start Game" />
+        android:text="Start Game"
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/HTP_button"
@@ -26,7 +27,8 @@
         android:layout_centerVertical="true"
         android:background="@drawable/buttons"
         android:onClick="HowTo"
-        android:text="How to play" />
+        android:text="How to play"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/Exit_button"
@@ -37,5 +39,6 @@
         android:layout_marginTop="51dp"
         android:background="@drawable/buttons"
         android:onClick="Exit"
-        android:text="Exit Game" />
+        android:text="Exit Game"
+        android:textColor="#000000"/>
 </RelativeLayout>

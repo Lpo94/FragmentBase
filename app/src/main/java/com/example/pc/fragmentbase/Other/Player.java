@@ -89,7 +89,7 @@ public class Player extends GameObject {
 
         else if(timer <= 0 && slowed == true)
         {
-            speed = 0.5f;
+            speed = 0.8f;
             slowed = false;
         }
 
@@ -235,7 +235,7 @@ public class Player extends GameObject {
         if(StaticValues.Instance().currentTime > sprintTimer)
         {
             isSprinting = false;
-            speed = 0.5f;
+            speed = 0.8f;
             animationDelay = 75;
         }
     }
@@ -248,9 +248,9 @@ public class Player extends GameObject {
         {
             if(_other instanceof Mud)
             {
-                speed = 1;
+                speed = 0.4f;
                 slowed = true;
-                timer = 10;
+                timer = 15;
             }
 
             if(_other instanceof Ground)

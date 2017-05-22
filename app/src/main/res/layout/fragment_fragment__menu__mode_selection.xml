@@ -7,11 +7,12 @@
         android:id="@+id/btnSingleP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="42dp"
         android:background="@drawable/buttons"
         android:text="Singleplayer"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/btnBluetooth"
@@ -19,17 +20,18 @@
         android:layout_height="wrap_content"
         android:background="@drawable/buttons"
         android:text="Bluetooth"
-        android:layout_above="@+id/btnBack"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="126dp" />
+        android:textColor="#000000"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="123dp"
+        android:layout_marginBottom="43dp"
         android:background="@drawable/buttons"
         android:text="Back to menu"
+        android:textColor="#000000"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/btnSingleP"
         android:layout_alignStart="@+id/btnSingleP" />
