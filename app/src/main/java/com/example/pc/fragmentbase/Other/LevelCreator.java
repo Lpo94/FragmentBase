@@ -107,7 +107,8 @@ public class LevelCreator {
                             StaticValues.Instance().globalPlayer = player;
                             StaticValues.Instance().allPlayers.add(player);
 
-
+/*Goal testGoal2 = new Goal(new Point(1000, 1000));
+                         testLevel.add(testGoal2);*/
 
                             RaceCountdownTimer counter = new RaceCountdownTimer(player, new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 5));
                             testLevel.add(counter);
@@ -119,8 +120,8 @@ public class LevelCreator {
 //                            PowerUp testSpeedPUP = new PowerUp(new Point(400, 50), PowerUp.PowerUpType.speed);
 //                            testLevel.add(testSpeedPUP);
 //
-//                           Goal testGoal2 = new Goal(new Point(1000, 1000));
-//                            testLevel.add(testGoal2);
+//                          /* Goal testGoal2 = new Goal(new Point(1000, 1000));
+//                            testLevel.add(testGoal2);*/
 
                  /*           FireObject testfireObject = new FireObject(new Point(800, 50));
                             testLevel.add(testfireObject);*/

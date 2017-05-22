@@ -34,6 +34,7 @@ public class Player extends GameObject {
     private int direction = 0;
     private Vibrator vibrator = (Vibrator)StaticValues.Instance().staticContext.getSystemService(StaticValues.Instance().staticContext.VIBRATOR_SERVICE);
     private PowerUpButton powerupBtn;
+    public String playerName;
     // Animation
     private enum Animations { idle, walking, falling, stunned}
     private Animations curAnim;
@@ -288,7 +289,7 @@ public class Player extends GameObject {
 
             if(_other instanceof Goal)
             {
-                StaticValues.Instance().gameFinished = true;
+                ((Goal) _other).canCollect(this);
             }
 
             if(_other instanceof Fireball && ((Fireball)_other).owner != this)
@@ -381,18 +382,22 @@ public class Player extends GameObject {
         {
             case 1:
                 bitmap = BitmapFactory.decodeResource(StaticValues.Instance().staticContext.getResources(), R.drawable.player_giraf);
+                playerName ="Giraf";
                 break;
 
             case 2:
                 bitmap = BitmapFactory.decodeResource(StaticValues.Instance().staticContext.getResources(),R.drawable.player_dino);
+                playerName ="Dino";
                 break;
 
             case 3:
                 bitmap = BitmapFactory.decodeResource(StaticValues.Instance().staticContext.getResources(),R.drawable.player_parrot);
+                playerName ="Parrot";
                 break;
 
             case 4:
                 bitmap = BitmapFactory.decodeResource(StaticValues.Instance().staticContext.getResources(),R.drawable.player_cow);
+                playerName ="Cow";
                 break;
         }
 

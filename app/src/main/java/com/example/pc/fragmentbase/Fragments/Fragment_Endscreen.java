@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.pc.fragmentbase.Other.MainActivity;
+import com.example.pc.fragmentbase.Other.StaticValues;
 import com.example.pc.fragmentbase.R;
 
 
@@ -22,7 +23,6 @@ public class Fragment_Endscreen extends Fragment {
     private TextView thirdText;
     private TextView fourthText;
 
-    MainActivity main;
 
     public Fragment_Endscreen() {
         // Required empty public constructor
@@ -35,20 +35,35 @@ public class Fragment_Endscreen extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_endscreen, container, false);
 
-        main = MainActivity.getInstance();
-
         firstText = (TextView)view.findViewById(R.id.place1);
-        firstText.setText(main.finishedPlayers.get(0));
-
         secondText = (TextView)view.findViewById(R.id.place2);
-        secondText.setText(main.finishedPlayers.get(1));
-
         thirdText = (TextView)view.findViewById(R.id.place3);
-        thirdText.setText(main.finishedPlayers.get(2));
-
         fourthText = (TextView)view.findViewById(R.id.place4);
-        fourthText.setText(main.finishedPlayers.get(3));
 
+        switch (StaticValues.Instance().finishedPlayers.size())
+        {
+            case 1:
+                firstText.setText(StaticValues.Instance().finishedPlayers.get(0).playerName);
+                break;
+
+            case 2:
+                firstText.setText(StaticValues.Instance().finishedPlayers.get(0).playerName);
+                secondText.setText(StaticValues.Instance().finishedPlayers.get(1).playerName);
+                break;
+
+            case 3:
+                firstText.setText(StaticValues.Instance().finishedPlayers.get(0).playerName);
+                secondText.setText(StaticValues.Instance().finishedPlayers.get(1).playerName);
+                thirdText.setText(StaticValues.Instance().finishedPlayers.get(2).playerName);
+                break;
+
+            case 4:
+                firstText.setText(StaticValues.Instance().finishedPlayers.get(0).playerName);
+                secondText.setText(StaticValues.Instance().finishedPlayers.get(1).playerName);
+                thirdText.setText(StaticValues.Instance().finishedPlayers.get(2).playerName);
+                fourthText.setText(StaticValues.Instance().finishedPlayers.get(3).playerName);
+                break;
+        }
 
 
         view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {

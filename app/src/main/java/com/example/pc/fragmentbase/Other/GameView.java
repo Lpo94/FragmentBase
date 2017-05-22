@@ -36,13 +36,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         StaticValues.Instance().staticContext = context;
         gestureDetector = new GestureDetector(context, new GestureListener());
         gestureDetector.setIsLongpressEnabled(true);
-   /*     SoundManager.getInstance().loadSounds(context);
-        SoundManager.getInstance().baggroundMusic.start(); HVORFOR ER DU NULL DIN DUMME ABE*/
+        SoundManager.getInstance().loadSounds(context);
+        SoundManager.getInstance().startBackgroundMusic();
         newGame();
     }
 
     public void newGame() {
         StaticValues.Instance().allPlayers = new ArrayList<>();
+        StaticValues.Instance().finishedPlayers = new ArrayList<>();
         StaticValues.Instance().colliders = new ArrayList<>();
         StaticValues.Instance().gameObjects = new ArrayList<>();
         StaticValues.Instance().objectsToRemove = new ArrayList<>();
@@ -80,7 +81,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
 
-private int mActivePointerId;
+
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -101,7 +102,14 @@ private int mActivePointerId;
 
                         if (StaticValues.Instance().globalPlayer != null)
                         {
-                            if (x < StaticValues.Instance().SCREEN_WIDTH / 2)
+                            if (x < PowerUpButton.getInstance().pos.x + PowerUpButton.getInstance().bitmapWidth &&
+                                    x > PowerUpButton.getInstance().pos.x &&
+                                    y < PowerUpButton.getInstance().pos.y + PowerUpButton.getInstance().bitmapHeight &&
+                                    y > PowerUpButton.getInstance().pos.y)
+                            {
+                                StaticValues.Instance().globalPlayer.usePowerup();
+                            }
+                            else if (x < StaticValues.Instance().SCREEN_WIDTH / 2)
                             {
                                 StaticValues.Instance().globalPlayer.setDirection(-1);
                             }
@@ -109,13 +117,7 @@ private int mActivePointerId;
                             {
                                 StaticValues.Instance().globalPlayer.setDirection(1);
                             }
-                            else if (x < PowerUpButton.getInstance().pos.x + PowerUpButton.getInstance().bitmapWidth &&
-                                    x > PowerUpButton.getInstance().pos.x &&
-                                    y < PowerUpButton.getInstance().pos.y + PowerUpButton.getInstance().bitmapHeight &&
-                                    y > PowerUpButton.getInstance().pos.y)
-                            {
-                                StaticValues.Instance().globalPlayer.usePowerup();
-                            }
+
                         }
                         break;
 
@@ -129,19 +131,20 @@ private int mActivePointerId;
 
                         if (StaticValues.Instance().globalPlayer != null)
                         {
-                            if (x < StaticValues.Instance().SCREEN_WIDTH / 2)
+                            if (x < PowerUpButton.getInstance().pos.x + PowerUpButton.getInstance().bitmapWidth &&
+                                    x > PowerUpButton.getInstance().pos.x &&
+                                    y < PowerUpButton.getInstance().pos.y + PowerUpButton.getInstance().bitmapHeight &&
+                                    y > PowerUpButton.getInstance().pos.y) {
+                                StaticValues.Instance().globalPlayer.usePowerup();
+                            }
+
+                            else if (x < StaticValues.Instance().SCREEN_WIDTH / 2)
                             {
                                 StaticValues.Instance().globalPlayer.setDirection(-1);
                             }
                             else if (x > StaticValues.Instance().SCREEN_WIDTH / 2)
                             {
                                 StaticValues.Instance().globalPlayer.setDirection(1);
-                            }
-                            else if (x < PowerUpButton.getInstance().pos.x + PowerUpButton.getInstance().bitmapWidth &&
-                                    x > PowerUpButton.getInstance().pos.x &&
-                                    y < PowerUpButton.getInstance().pos.y + PowerUpButton.getInstance().bitmapHeight &&
-                                    y > PowerUpButton.getInstance().pos.y) {
-                                StaticValues.Instance().globalPlayer.usePowerup();
                             }
                         }
                         break;
@@ -153,60 +156,7 @@ private int mActivePointerId;
                 }
             }
         }
-            return gestureDetector.onTouchEvent(event);
-
-///////////////// http://stackoverflow.com/questions/4268426/android-difference-between-action-up-and-action-pointer-up
-
-//
-//       // Get the pointer ID
-//        mActivePointerId = event.getPointerId(0);
-//        // ... Many touch events later...
-//
-//        // Use the pointer ID to find the index of the active pointer
-//        // and fetch its position
-//        int pointerIndex = event.findPointerIndex(mActivePointerId);
-//
-//        int x = (int) event.getX(pointerIndex);
-//        int y = (int) event.getY(pointerIndex);
-//
-//        if (!StaticValues.Instance().gameFinished)
-//        {
-//            switch (event.getAction())
-//            {
-//                case MotionEvent.ACTION_DOWN:
-//                    if (gestureDetector.onTouchEvent(event))
-//                    {
-//                        if (StaticValues.Instance().globalPlayer != null)
-//                        {
-//                            if (x < StaticValues.Instance().SCREEN_WIDTH / 2)
-//                            {
-//                                StaticValues.Instance().globalPlayer.setDirection(-1);
-//                            } else if (x > StaticValues.Instance().SCREEN_WIDTH / 2)
-//                            {
-//                                StaticValues.Instance().globalPlayer.setDirection(1);
-//                            }
-//                            if(     x < PowerUpButton.getInstance().pos.x + PowerUpButton.getInstance().bitmapWidth &&
-//                                    x >PowerUpButton.getInstance().pos.x &&
-//                                    y < PowerUpButton.getInstance().pos.y + PowerUpButton.getInstance().bitmapHeight &&
-//                                    y >PowerUpButton.getInstance().pos.y)
-//                            {
-//                                StaticValues.Instance().globalPlayer.usePowerup();
-//                            }
-//                        }
-//                    }
-//                    break;
-//                case MotionEvent.ACTION_MOVE:
-//
-//                    break;
-//
-//                case MotionEvent.ACTION_UP:
-//                    StaticValues.Instance().globalPlayer.setDirection(0);
-//                    break;
-//            }
-//        }
-//
-//        return gestureDetector.onTouchEvent(event);
-
+        return gestureDetector.onTouchEvent(event);
     }
 
     public void update() {
@@ -300,9 +250,9 @@ private int mActivePointerId;
 
 
         gameThreadThread = null;
-        StaticValues.Instance().mBTService.stopService();
+   /*     StaticValues.Instance().mBTService.stopService();
         StaticValues.Instance().mBTService = null;
-        StaticValues.Instance().resetInstance();
+        StaticValues.Instance().resetInstance();*/
 
 /*        Intent intent = new Intent(getContext(), MainActivity.class);
         getContext().startActivity(intent);*/

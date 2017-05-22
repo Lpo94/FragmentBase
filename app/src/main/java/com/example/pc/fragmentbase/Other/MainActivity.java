@@ -19,18 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 /*    husk og lave fragment klasser og ik java klasser. og afvinke de 2 nederste flueben.*/
-    private static MainActivity instance;
 
-    public static MainActivity getInstance()
-    {
-        if(instance == null)
-        {
-            instance = new MainActivity();
-        }
-        return instance;
-    }
-    public ArrayList<String> finishedPlayers;
-    public Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        context = this;
-
-        finishedPlayers = new ArrayList<>();
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         StaticValues.Instance().SCREEN_WIDTH = dm.widthPixels;
         StaticValues.Instance().SCREEN_HEIGHT = dm.heightPixels;
+
+        SoundManager.getInstance().startBackgroundMusic();
 
         if(findViewById(R.id.fragment_container) != null)
         {
@@ -54,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks(){
+        getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks()
+        {
 
 
             @Override
@@ -78,4 +67,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SoundManager.getInstance().baggroundMusic.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SoundManager.getInstance().baggroundMusic.start();
+    }
 }

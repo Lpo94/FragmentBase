@@ -15,6 +15,7 @@ import java.util.UUID;
  */
 
 public class StaticValues {
+
     private static StaticValues instance;
 
     public static StaticValues Instance(){
@@ -41,6 +42,7 @@ public class StaticValues {
     public Player globalPlayer;
     public MultiplayerObject btPlayer;
     public ArrayList<Player> allPlayers;
+    public ArrayList<Player> finishedPlayers;
 
     //Lists
     public ArrayList<GameObject> colliders;

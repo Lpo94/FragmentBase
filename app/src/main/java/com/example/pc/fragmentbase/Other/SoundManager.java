@@ -35,6 +35,7 @@ public class SoundManager
     private SoundManager()
     {
         super();
+        baggroundMusic = new MediaPlayer();
     }
 
     public void loadSounds(Context _context)

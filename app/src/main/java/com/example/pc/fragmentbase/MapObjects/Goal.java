@@ -6,8 +6,10 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.pc.fragmentbase.Fragments.Fragment_Game;
 import com.example.pc.fragmentbase.Other.GameObject;
 import com.example.pc.fragmentbase.Other.GameView;
+import com.example.pc.fragmentbase.Other.MainActivity;
 import com.example.pc.fragmentbase.Other.Player;
 import com.example.pc.fragmentbase.R;
 import com.example.pc.fragmentbase.Other.StaticValues;
@@ -22,14 +24,8 @@ import java.util.ArrayList;
 public class Goal extends GameObject implements iCollectable
 {
 
-    public ArrayList<Player> hasCollected;
-    GameView gv;
-
     public Goal(Point _pos)
     {
-        hasCollected = new ArrayList<>();
-  /*      gv = GameView.getInstance(StaticValues.staticContext); Sæt den her til null så vi ik riskierer at få flere overlappende spil */ // KASPER HER!!
-
         pos = _pos;
         rowsInSheet = 1;
         columnsInSheet = 1;
@@ -39,41 +35,31 @@ public class Goal extends GameObject implements iCollectable
         frameCount = 1;
     }
 
+
     @Override
     public boolean canCollect(Player _player)
     {
-        return true;
+        if(StaticValues.Instance().finishedPlayers.contains(_player))
+        {
+            return false;
+        }
+        else
+        {
+            collect(_player);
+            return true;
+        }
     }
 
     @Override
     public void collect(Player _player)
     {
-        hasCollected.add(_player);
+        StaticValues.Instance().finishedPlayers.add(_player);
 
-        Log.w("finishedplayers size: ", String.valueOf(hasCollected.size()));
-        Log.w("allPlayers size: ", String.valueOf(StaticValues.Instance().allPlayers.size()));
-
-        if(hasCollected.size() == StaticValues.Instance().allPlayers.size())
+        if(StaticValues.Instance().finishedPlayers.size() == StaticValues.Instance().allPlayers.size())
         {
-            // game over flyt til score skærm når reset virker
-            // Flyt til menu
-      /*      gv = null; // Er det her nok?*/ // KASPER HER!!
-/*            Intent backToMenu = new Intent(StaticValues.Instance().staticContext, MainActivity.class);
-            StaticValues.Instance().staticContext.startActivity(backToMenu);*/
-// evt brug shared preferences her istedet for bundle til at vidergive datane
-
-/*            Intent endScreen = new Intent(StaticValues.Instance().staticContext, EndScreenActivity.class);*/
- /*           Bundle customParameter = new Bundle();
-            customParameter.putStringArray("finishedPlayers", new String[]
-                    {
-                            String.valueOf(hasCollected.get(0).getPlayerNumber()),
-                            String.valueOf(hasCollected.get(1).getPlayerNumber()),
-                            String.valueOf(hasCollected.get(2).getPlayerNumber()),
-                            String.valueOf(hasCollected.get(3).getPlayerNumber()),
-                    });
-            endScreen.putExtras(customParameter);
-            StaticValues.Instance().staticContext.startActivity(endScreen);*/
-    /*        finish(); */
-        }
+            StaticValues.Instance().gameFinished = true;
+            // skift til end screen
+            Fragment_Game.getInstance().GameOver(); /*test om dette virker og evt kig på den funky singleton Fragnebt:gane er dens construktor skal være private. skal jeg evt lave en private kopi af den her i for at køre game over?
+      */  }
     }
 }
