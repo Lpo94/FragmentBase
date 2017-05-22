@@ -8,34 +8,31 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.util.Log;
 
-import com.example.pc.fragmentbase.R;
-
 import java.io.IOException;
 
 /**
  * Created by SharkGaming on 03/05/2017.
  */
 
-public class SoundManager
+public class SoundEffectManager
 {
-    private static SoundManager instance;
+    private static SoundEffectManager instance;
     private SoundPool soundPool;
     private int shoot = -1;
-    public MediaPlayer baggroundMusic;
 
 
-    public static SoundManager getInstance()
+    public static SoundEffectManager getInstance()
     {
         if(instance == null)
         {
-            instance = new SoundManager();
+            instance = new SoundEffectManager();
         }
         return instance;
     }
-    private SoundManager()
+
+    private SoundEffectManager()
     {
         super();
-        baggroundMusic = new MediaPlayer();
     }
 
     public void loadSounds(Context _context)
@@ -67,16 +64,5 @@ public class SoundManager
                 soundPool.play(shoot, 1, 1, 0, 0, 1);
                 break;
         }
-    }
-
-    public void startBackgroundMusic()
-    {
-                if(baggroundMusic == null)
-                {
-                    baggroundMusic = MediaPlayer.create(StaticValues.Instance().staticContext, R.raw.menu);
-                    baggroundMusic.setLooping(true);
-                    baggroundMusic.setVolume(0.05f, 0.05f);
-                    baggroundMusic.start();
-                }
     }
 }

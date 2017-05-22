@@ -1,7 +1,6 @@
 package com.example.pc.fragmentbase.Fragments;
 
 
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.pc.fragmentbase.Other.SoundManager;
+import com.example.pc.fragmentbase.Other.SoundEffectManager;
 import com.example.pc.fragmentbase.R;
 
 
@@ -30,8 +29,6 @@ public class Fragment_Menu_Main extends Fragment {
     {
 
         View view = inflater.inflate(R.layout.fragment_menu_main, container, false);
-
-        SoundManager.getInstance().startBackgroundMusic();
 
         view.findViewById(R.id.Start_button).setOnClickListener(new View.OnClickListener()
         {

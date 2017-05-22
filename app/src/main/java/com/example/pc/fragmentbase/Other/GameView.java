@@ -1,7 +1,6 @@
 package com.example.pc.fragmentbase.Other;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -36,8 +35,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         StaticValues.Instance().staticContext = context;
         gestureDetector = new GestureDetector(context, new GestureListener());
         gestureDetector.setIsLongpressEnabled(true);
-        SoundManager.getInstance().loadSounds(context);
-        SoundManager.getInstance().startBackgroundMusic();
+        SoundEffectManager.getInstance().loadSounds(context);
         newGame();
     }
 

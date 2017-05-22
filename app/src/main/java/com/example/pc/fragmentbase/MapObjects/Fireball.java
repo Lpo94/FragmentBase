@@ -6,7 +6,7 @@ import android.graphics.Point;
 import com.example.pc.fragmentbase.Other.GameObject;
 import com.example.pc.fragmentbase.Other.Player;
 import com.example.pc.fragmentbase.R;
-import com.example.pc.fragmentbase.Other.SoundManager;
+import com.example.pc.fragmentbase.Other.SoundEffectManager;
 import com.example.pc.fragmentbase.Other.StaticValues;
 
 /**
@@ -21,7 +21,7 @@ public class Fireball extends GameObject
     private int projectileSpeed;
     private long removeDelay;
     private long removeTimer;
-    private SoundManager soundManager;
+    private SoundEffectManager soundEffectManager;
 
     public Fireball(Player _player)
     {
@@ -37,8 +37,8 @@ public class Fireball extends GameObject
         animationDelay = 100;
         frameCount = 28;
 
-        soundManager = SoundManager.getInstance();
-        soundManager.playSound("shoot");
+        soundEffectManager = SoundEffectManager.getInstance();
+        soundEffectManager.playSound("shoot");
 
         removeDelay = (System.currentTimeMillis()) + 10000;
         curAnim = Animations.fadeIn;

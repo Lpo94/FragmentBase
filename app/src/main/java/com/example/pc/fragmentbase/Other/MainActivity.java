@@ -2,6 +2,7 @@ package com.example.pc.fragmentbase.Other;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 /*    husk og lave fragment klasser og ik java klasser. og afvinke de 2 nederste flueben.*/
-
+    private MediaPlayer backgroundMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,8 +33,13 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         StaticValues.Instance().SCREEN_WIDTH = dm.widthPixels;
         StaticValues.Instance().SCREEN_HEIGHT = dm.heightPixels;
+        StaticValues.Instance().staticContext = this;
 
-        SoundManager.getInstance().startBackgroundMusic();
+
+        backgroundMusic = MediaPlayer.create(StaticValues.Instance().staticContext, R.raw.menu);
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(0.05f, 0.05f);
+        backgroundMusic.start();
 
         if(findViewById(R.id.fragment_container) != null)
         {
@@ -70,12 +76,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        SoundManager.getInstance().baggroundMusic.pause();
+        backgroundMusic.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        SoundManager.getInstance().baggroundMusic.start();
+        backgroundMusic.start();
     }
 }
