@@ -316,6 +316,7 @@ public class Player extends GameObject {
                     {
                         currentPowerup = new PowerUp(pos, PowerUp.PowerUpType.speed);
                         PowerUpButton.getInstance().state = PowerUpButton.btnStates.speed;
+                        
                     }
                 }
             }
