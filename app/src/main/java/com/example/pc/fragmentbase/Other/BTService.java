@@ -1,12 +1,20 @@
 package com.example.pc.fragmentbase.Other;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
+import com.example.pc.fragmentbase.Fragments.Fragment_Game;
+import com.example.pc.fragmentbase.Fragments.Fragment_Menu_Bluetooth;
+import com.example.pc.fragmentbase.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -272,11 +280,7 @@ public class BTService {
                     bytes = mmInStream.read(buffer);
                     String incomingMessage = new String(buffer, 0, bytes);
 
-
-
-//                    Intent incomingMessageIntent = new Intent("mBTPlayerUpdate");
-//                    incomingMessageIntent.putExtra("theMessage", incomingMessage);
-//                    LocalBroadcastManager.getInstance(StaticValues.Instance().staticContext).sendBroadcast(incomingMessageIntent);
+                    handleMessage(incomingMessage);
 
 
                     Log.d(TAG, "InputStream: " + incomingMessage);
@@ -328,5 +332,22 @@ public class BTService {
         Log.d(TAG, "write: Write Called.");
         //perform the write
         mConnectedThread.write(out);
+    }
+
+    public void handleMessage(String _msg)
+    {
+        Intent incomingMessageIntent;
+        String[] temp = _msg.split("-");
+
+        switch (temp[0])
+        {
+            case "BluetoothMessage":
+                incomingMessageIntent = new Intent("IncomingMessage");
+                incomingMessageIntent.putExtra("theMessage", temp[1]);
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(incomingMessageIntent);
+                break;
+
+        }
+
     }
 }

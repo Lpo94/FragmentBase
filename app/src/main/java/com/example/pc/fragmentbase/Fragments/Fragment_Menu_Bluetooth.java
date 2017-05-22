@@ -1,34 +1,74 @@
 package com.example.pc.fragmentbase.Fragments;
 
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.pc.fragmentbase.Other.StaticValues;
 import com.example.pc.fragmentbase.R;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Fragment_Menu_Bluetooth extends Fragment {
 
-/**  public Button Server, ConnectToServer,Connect, Pair, Back, visListe, discover, scan, _back;
+    public Button Server, ConnectToServer,Connect, Pair, Back, visListe, discover, scan, _back, startBtn;
     public ListView lvDevices;
     public View view;
 
     private ArrayList deviceList;
     private ArrayAdapter deviceAdapter;
     private Set<BluetoothDevice> devicesArray;
+    private IntentFilter intentFilter = new IntentFilter("BluetoothMessage");
+    private BroadcastReceiver broadcastReceiver;
+
 
     IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
     BroadcastReceiver mReciever1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.bluetooth_menu, container, false);
+        view = inflater.inflate(R.layout.fragment_fragment__menu__bluetooth2, container, false);
         deviceList = new ArrayList();
+
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(broadcastReceiver,intentFilter);
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String msg = intent.getStringExtra("theMessage");
+
+                switch(msg)
+                {
+                    case "StartGame":
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Game()).commit();
+                        break;
+
+                }
+            }
+        };
+        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
 
         mReciever1 = new BroadcastReceiver() {
             @Override
@@ -45,6 +85,11 @@ public class Fragment_Menu_Bluetooth extends Fragment {
                         deviceAdapter.add(device.getName() + "\n" + device.getAddress());
                     }
                 }
+
+                else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    deviceList.add(device.getName());
+                }
             }
         };
 
@@ -54,6 +99,7 @@ public class Fragment_Menu_Bluetooth extends Fragment {
 
 
         Server = (Button) view.findViewById(R.id.Server_button);
+        startBtn = (Button)view.findViewById(R.id.btnStartGame);
         Back = (Button) view.findViewById(R.id.BackM_button);
 
         ConnectToServer = (Button) view.findViewById(R.id.Connect_button);
@@ -75,13 +121,29 @@ public class Fragment_Menu_Bluetooth extends Fragment {
         scan.setVisibility(view.INVISIBLE);
         _back.setVisibility(view.INVISIBLE);
 
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String msg = "BluetoothMessage-StartGame";
+                StaticValues.Instance().mBTService.write(msg.getBytes(Charset.defaultCharset()));
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Game()).commit();
+            }
+        });
+
         Server.setOnClickListener(
                 new View.OnClickListener()
                 {
                     public void onClick(View v)
                     {
                         view = v;
+                        deviceList.clear();
                         buttonClicked(v, "Server");
+                        deviceList.add(StaticValues.Instance().BA.getName());
+
+                        deviceAdapter = new  ArrayAdapter(getContext(),android.R.layout.simple_list_item_1, deviceList);
+
+                        lvDevices.setAdapter(deviceAdapter);
                     }
                 }
         );
@@ -136,7 +198,8 @@ public class Fragment_Menu_Bluetooth extends Fragment {
             @Override
             public void onClick(View v) {
                 StaticValues.Instance().connectedDevice = StaticValues.Instance().BA.getRemoteDevice(StaticValues.Instance().connectedDeviceAdress);
-                ((MainActivity)getActivity()).startBTConenction(StaticValues.Instance().connectedDevice,StaticValues.Instance().MY_UUID_INSECURE);
+                StaticValues.Instance().mBTService.startClient(StaticValues.Instance().connectedDevice,
+                        StaticValues.Instance().MY_UUID_INSECURE);
             }
         });
 
@@ -229,6 +292,8 @@ public class Fragment_Menu_Bluetooth extends Fragment {
     {
         switch (button) {
             case "Server":
+                lvDevices.setVisibility(view.VISIBLE);
+                startBtn.setVisibility(view.VISIBLE);
                 Server.setVisibility(view.INVISIBLE);
                 ConnectToServer.setVisibility(view.INVISIBLE);
                 Pair.setVisibility(view.INVISIBLE);
@@ -261,11 +326,7 @@ public class Fragment_Menu_Bluetooth extends Fragment {
                 break;
 
             case "Back":
-                StaticValues.Instance().fragment = new ModeMenu();
-                StaticValues.Instance().fragmentManager = getActivity().getSupportFragmentManager();
-                StaticValues.Instance().fragmentTransaction = StaticValues.Instance().fragmentManager.beginTransaction();
-                StaticValues.Instance().fragmentTransaction.replace(R.id.fragment7, StaticValues.Instance().fragment);
-                StaticValues.Instance().fragmentTransaction.commit();
+
                 Server.setVisibility(view.INVISIBLE);
                 ConnectToServer.setVisibility(view.INVISIBLE);
                 Pair.setVisibility(view.INVISIBLE);
@@ -287,5 +348,7 @@ public class Fragment_Menu_Bluetooth extends Fragment {
             default:
                 break;
         }
-    }*/
+    }
+
+
 }

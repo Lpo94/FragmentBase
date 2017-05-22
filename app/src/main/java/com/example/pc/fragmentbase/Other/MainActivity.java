@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 /*    husk og lave fragment klasser og ik java klasser. og afvinke de 2 nederste flueben.*/
     private MediaPlayer backgroundMusic;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

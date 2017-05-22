@@ -48,11 +48,12 @@
         android:layout_height="65dp"
         android:background="@drawable/buttons"
         android:text="Make a server"
-        android:layout_marginLeft="19dp"
-        android:layout_marginStart="19dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/Pair_button"
+        android:layout_toLeftOf="@+id/deviceListView"
+        android:layout_toStartOf="@+id/deviceListView"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="54dp" />
 
     <Button
         android:id="@+id/Connect_button"
@@ -60,19 +61,19 @@
         android:layout_height="65dp"
         android:background="@drawable/buttons"
         android:text="Connect to server"
-        android:layout_marginTop="19dp"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/btnVisListe"
-        android:layout_alignStart="@+id/btnVisListe" />
+        android:layout_alignLeft="@+id/Server_button"
+        android:layout_alignStart="@+id/Server_button"
+        android:layout_marginTop="14dp" />
 
     <Button
         android:id="@+id/Pair_button"
         android:layout_width="150dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="13dp"
         android:background="@drawable/buttons"
         android:text="Pair your bluetooth"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/btnStartGame"
         android:layout_alignLeft="@+id/Server_button"
         android:layout_alignStart="@+id/Server_button" />
 
@@ -103,4 +104,15 @@
         android:layout_alignStart="@+id/btnScan"
         android:background="@drawable/buttons"
         android:text="Connect" />
+    <Button
+        android:id="@+id/btnStartGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Game"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/deviceListView"
+        android:layout_toEndOf="@+id/deviceListView"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="50dp" />
 </RelativeLayout>

@@ -38,6 +38,8 @@ public class StaticValues {
     }
 
 
+
+
     //Player
     public Player globalPlayer;
     public MultiplayerObject btPlayer;
