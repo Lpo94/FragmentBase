@@ -3,6 +3,7 @@ package com.example.pc.fragmentbase.MapObjects;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
+import android.graphics.Rect;
 
 import com.example.pc.fragmentbase.Other.GameObject;
 import com.example.pc.fragmentbase.Other.StaticValues;
@@ -77,7 +78,15 @@ public class PowerUpButton extends GameObject
     @Override
     public void draw(Canvas _canvas)
     {
-        super.draw(_canvas);
+        if(bitmap != null)
+        {
+            sourceX = currentFrame * bitmapWidth;
+
+            Rect sourceRect = new Rect(sourceX, sourceY, sourceX + bitmapWidth, sourceY + bitmapHeight);
+            Rect r = new Rect(pos.x, pos.y, pos.x + bitmapWidth, pos.y + bitmapHeight);
+
+            _canvas.drawBitmap(bitmap, sourceRect, r, null);
+        }
     }
 
 }

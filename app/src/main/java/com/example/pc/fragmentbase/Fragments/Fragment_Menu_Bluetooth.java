@@ -113,7 +113,7 @@ public class Fragment_Menu_Bluetooth extends Fragment {
         _back = (Button) view.findViewById(R.id.btnBack);
 
         lvDevices = (ListView) view.findViewById(R.id.deviceListView);
-
+        startBtn.setVisibility(view.VISIBLE);
         visListe.setVisibility(view.INVISIBLE);
         lvDevices.setVisibility(view.INVISIBLE);
         Connect.setVisibility(view.INVISIBLE);

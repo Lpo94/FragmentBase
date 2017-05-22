@@ -183,7 +183,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             for (GameObject go : StaticValues.Instance().tempObjects) {
                 StaticValues.Instance().globalPlayer.onCollisionStay(go);
                 StaticValues.Instance().globalPlayer.onCollisionEnter(go);
-
             }
             StaticValues.Instance().globalPlayer.onCollisionExit();
 

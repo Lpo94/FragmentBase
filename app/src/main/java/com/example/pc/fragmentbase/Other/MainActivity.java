@@ -77,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        backgroundMusic.pause();
+//        backgroundMusic.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        backgroundMusic.start();
+//        backgroundMusic.start();
     }
 }
