@@ -343,6 +343,7 @@ public class Fragment_Menu_Bluetooth extends Fragment {
                 discover.setVisibility(view.INVISIBLE);
                 scan.setVisibility(view.INVISIBLE);
                 _back.setVisibility(view.INVISIBLE);
+                Connect.setVisibility(view.INVISIBLE);
                 break;
 
             default:

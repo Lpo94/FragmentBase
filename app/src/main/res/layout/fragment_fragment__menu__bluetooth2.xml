@@ -4,43 +4,48 @@
 
     <Button
         android:id="@+id/btnVisListe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/deviceListView"
-        android:layout_alignLeft="@+id/Server_button"
-        android:layout_alignStart="@+id/Server_button"
-        android:layout_marginBottom="12dp"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
         android:background="@drawable/buttons"
-        android:text="Show Paired Devices" />
+        android:text="Show Paired Devices"
+        android:layout_alignBottom="@+id/Connect_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/btnDiscover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnVisListe"
-        android:layout_alignBottom="@+id/btnVisListe"
-        android:layout_toLeftOf="@+id/btnBack"
-        android:layout_toStartOf="@+id/btnBack"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
         android:background="@drawable/buttons"
-        android:text="Discover" />
+        android:text="Discover"
+        android:layout_alignTop="@+id/Server_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/btnScan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
+        android:background="@drawable/buttons"
         android:text="Scan"
-        android:layout_alignBaseline="@+id/btnVisListe"
-        android:layout_alignBottom="@+id/btnVisListe"
-        android:layout_toRightOf="@+id/btnBack" />
+        android:layout_alignBaseline="@+id/btnConnect"
+        android:layout_alignBottom="@+id/btnConnect"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
         android:layout_alignBaseline="@+id/BackM_button"
         android:layout_alignBottom="@+id/BackM_button"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/buttons"
+        android:text="Back"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/Server_button"
@@ -48,71 +53,75 @@
         android:layout_height="65dp"
         android:background="@drawable/buttons"
         android:text="Make a server"
-        android:layout_above="@+id/Pair_button"
-        android:layout_toLeftOf="@+id/deviceListView"
-        android:layout_toStartOf="@+id/deviceListView"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="54dp" />
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/Connect_button"
         android:layout_width="150dp"
         android:layout_height="65dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/buttons"
         android:text="Connect to server"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/Server_button"
-        android:layout_alignStart="@+id/Server_button"
-        android:layout_marginTop="14dp" />
+        android:layout_alignLeft="@id/Server_button"
+        android:layout_alignRight="@id/Server_button"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/Pair_button"
         android:layout_width="150dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/buttons"
         android:text="Pair your bluetooth"
-        android:layout_alignBottom="@+id/btnStartGame"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/Server_button"
-        android:layout_alignStart="@+id/Server_button" />
+        android:layout_alignStart="@+id/Server_button"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/BackM_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/deviceListView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
         android:background="@drawable/buttons"
-        android:text="Back to menu" />
+        android:text="Back to menu"
+        android:layout_alignBottom="@+id/Pair_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp"
+        android:textColor="#000000"/>
 
     <ListView
         android:layout_width="200dp"
         android:layout_height="400dp"
         android:id="@+id/deviceListView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btnConnect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnScan"
-        android:layout_alignBottom="@+id/btnScan"
-        android:layout_alignLeft="@+id/btnScan"
-        android:layout_alignStart="@+id/btnScan"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
         android:background="@drawable/buttons"
-        android:text="Connect" />
+        android:text="Connect"
+        android:layout_above="@+id/BackM_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#000000"/>
+
     <Button
         android:id="@+id/btnStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
         android:text="Start Game"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/deviceListView"
-        android:layout_toEndOf="@+id/deviceListView"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="50dp" />
+        android:layout_alignTop="@+id/Connect_button"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"/>
 </RelativeLayout>
