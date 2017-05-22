@@ -11,6 +11,7 @@ import com.example.pc.fragmentbase.MapObjects.Ground;
 import com.example.pc.fragmentbase.MapObjects.Mud;
 import com.example.pc.fragmentbase.MapObjects.Platform;
 import com.example.pc.fragmentbase.MapObjects.PowerUp;
+import com.example.pc.fragmentbase.MapObjects.PowerUpButton;
 import com.example.pc.fragmentbase.MapObjects.RaceCountdownTimer;
 
 import java.io.BufferedReader;

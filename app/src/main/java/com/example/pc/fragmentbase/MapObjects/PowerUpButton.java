@@ -28,7 +28,6 @@ public class PowerUpButton extends GameObject
 
     private PowerUpButton()
     {
-        pos = new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 2 + 200);
         state = btnStates.empty;
         rowsInSheet = 1;
         columnsInSheet = 3;
@@ -36,12 +35,24 @@ public class PowerUpButton extends GameObject
         bitmapHeight = bitmap.getHeight() / rowsInSheet;
         bitmapWidth = bitmap.getWidth() / columnsInSheet;
         frameCount = 3;
+        pos = new Point(StaticValues.Instance().SCREEN_WIDTH / 2 - (bitmapWidth / 2), calcPosition(StaticValues.Instance().globalPlayer.getPos().y));
+    }
+
+    private int calcPosition(int _playerY)
+    {
+        int y = StaticValues.Instance().SCREEN_HEIGHT / 2 + bitmapHeight;
+
+        for(int i = y; i < _playerY + bitmapHeight; i++)
+        {
+            y++;
+        }
+
+        return y;
     }
 
     @Override
     public void update()
     {
-        pos = new Point(StaticValues.Instance().SCREEN_WIDTH / 2-(bitmapWidth/2), StaticValues.Instance().SCREEN_HEIGHT / 2 +200);
 
         switch (state)
         {

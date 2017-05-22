@@ -33,7 +33,6 @@ public class Player extends GameObject {
     private float defaultVelocity;
     private int direction = 0;
     private Vibrator vibrator = (Vibrator)StaticValues.Instance().staticContext.getSystemService(StaticValues.Instance().staticContext.VIBRATOR_SERVICE);
-    private PowerUpButton powerupBtn;
     public String playerName;
     // Animation
     private enum Animations { idle, walking, falling, stunned}
@@ -46,7 +45,6 @@ public class Player extends GameObject {
     public boolean canShoot, canSprint, isSprinting;
     public PowerUp currentPowerup;
     public long sprintTimer;
-
 
     public void setCanmove(boolean _value)
     {
@@ -67,7 +65,6 @@ public class Player extends GameObject {
         setPlayerSprite(getPlayerNumber());
         curAnim = Animations.idle;
         currentPowerup = new PowerUp(new Point(0, 0), PowerUp.PowerUpType.none);
-        powerupBtn = PowerUpButton.getInstance();
     }
 
     @Override
@@ -312,13 +309,13 @@ public class Player extends GameObject {
                     if(((PowerUp)_other).getType() == PowerUp.PowerUpType.fireball)
                     {
                         currentPowerup = new PowerUp(pos, PowerUp.PowerUpType.fireball);
-                        powerupBtn.state = PowerUpButton.btnStates.fire;;
+                        PowerUpButton.getInstance().state = PowerUpButton.btnStates.fire;;
                     }
 
                     if(((PowerUp)_other).getType() == PowerUp.PowerUpType.speed)
                     {
                         currentPowerup = new PowerUp(pos, PowerUp.PowerUpType.speed);
-                        powerupBtn.state = PowerUpButton.btnStates.speed;
+                        PowerUpButton.getInstance().state = PowerUpButton.btnStates.speed;
                     }
                 }
             }
@@ -412,7 +409,7 @@ public class Player extends GameObject {
     public void usePowerup()
     {
         currentPowerup.use(this);
-        powerupBtn.state = PowerUpButton.btnStates.empty;
+        PowerUpButton.getInstance().state = PowerUpButton.btnStates.empty;
     }
 
 
