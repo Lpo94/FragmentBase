@@ -14,7 +14,11 @@ import android.view.Window;
 
 import com.example.pc.fragmentbase.Fragments.Fragment_Endscreen;
 import com.example.pc.fragmentbase.Fragments.Fragment_Game;
+import com.example.pc.fragmentbase.Fragments.Fragment_HowToPlay;
+import com.example.pc.fragmentbase.Fragments.Fragment_Menu_Bluetooth;
+import com.example.pc.fragmentbase.Fragments.Fragment_Menu_Bluetooth_Server;
 import com.example.pc.fragmentbase.Fragments.Fragment_Menu_Main;
+import com.example.pc.fragmentbase.Fragments.Fragment_Menu_ModeSelection;
 import com.example.pc.fragmentbase.R;
 
 import java.util.ArrayList;
@@ -23,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
 /*    husk og lave fragment klasser og ik java klasser. og afvinke de 2 nederste flueben.*/
     private MediaPlayer backgroundMusic;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -69,27 +72,50 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new Fragment_Menu_Main()).commit();
     }
 
-
-    public void StartGame(View view)
+    public void changeFragment(String _newFragment)
     {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Game()).addToBackStack(null).commit();
-    }
+        switch (_newFragment)
+        {
+            case "MainMenu":
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_Main()).commit();
+                break;
 
-    public void endGame()
-    {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Endscreen()).commit();
+            case "HowToPlay":
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_HowToPlay()).commit();
+                break;
+
+            case "MenuBluetooth":
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_Bluetooth()).commit();
+                break;
+
+            case "MenuBluetoothServer":
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_Bluetooth_Server()).commit();
+                break;
+
+            case "MenuModeSelection":
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_ModeSelection()).commit();
+                break;
+
+            case "Game":
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Game()).commit();
+                break;
+
+            case "EndScreen":
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Endscreen()).commit();
+                break;
+        }
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-//        backgroundMusic.pause();
+        backgroundMusic.pause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        backgroundMusic.start();
+        backgroundMusic.start();
     }
 }

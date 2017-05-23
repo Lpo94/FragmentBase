@@ -37,7 +37,7 @@ public class Fragment_Menu_Main extends Fragment {
             @Override
             public void onClick(View v)
             {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_ModeSelection()).commit();
+                ((MainActivity)getActivity()).changeFragment("MenuModeSelection");
                 StaticValues.Instance().vibrator.vibrate(100);
             }
         });
@@ -47,7 +47,7 @@ public class Fragment_Menu_Main extends Fragment {
             @Override
             public void onClick(View v)
             {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_HowToPlay()).commit();
+                ((MainActivity)getActivity()).changeFragment("HowToPlay");
                 StaticValues.Instance().vibrator.vibrate(100);
             }
         });

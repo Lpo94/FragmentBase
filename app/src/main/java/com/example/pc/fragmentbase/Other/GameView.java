@@ -1,7 +1,5 @@
 package com.example.pc.fragmentbase.Other;
 
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,9 +18,7 @@ import android.widget.Toast;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import com.example.pc.fragmentbase.Fragments.Fragment_Endscreen;
 import com.example.pc.fragmentbase.MapObjects.PowerUpButton;
-import com.example.pc.fragmentbase.R;
 
 /**
  * Created by Lars-Peter on 16/05/2017.
@@ -202,16 +198,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
 
 
+
         if(StaticValues.Instance().gameFinished)
         {
-
             MainActivity main = (MainActivity)getContext();
-            main.endGame();
-
+            main.changeFragment("EndScreen");
         }
-
-
-
 
 
         StaticValues.Instance().tempObjects = new ArrayList<>(StaticValues.Instance().gameObjects);
@@ -232,7 +224,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             for (GameObject go : StaticValues.Instance().tempObjects) {
                 Player.Instance().onCollisionEnter(go);
             }
-
         }
 
 
@@ -265,14 +256,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             go.draw(_canvas);
         }
         if (Player.Instance() != null) {
+
             Player.Instance().draw(_canvas);
+
+
         }
         PowerUpButton.getInstance().draw(_canvas);
         if(StaticValues.Instance().gameState == GameState.BluetoothMultiplayer)
         {
             StaticValues.Instance().btPlayer.draw(_canvas);
         }
-
     }
 
 

@@ -7,19 +7,18 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Vibrator;
 
-import com.example.pc.fragmentbase.Fragments.Fragment_Game;
 import com.example.pc.fragmentbase.MapObjects.FireObject;
 import com.example.pc.fragmentbase.MapObjects.Fireball;
 import com.example.pc.fragmentbase.MapObjects.Goal;
 import com.example.pc.fragmentbase.MapObjects.Ground;
-import com.example.pc.fragmentbase.MapObjects.MapObject;
 import com.example.pc.fragmentbase.MapObjects.Mud;
 import com.example.pc.fragmentbase.MapObjects.Platform;
 import com.example.pc.fragmentbase.MapObjects.PowerUp;
 import com.example.pc.fragmentbase.MapObjects.PowerUpButton;
 import com.example.pc.fragmentbase.R;
 
-import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by LP on 19-04-2017.
@@ -28,6 +27,7 @@ import java.util.ArrayList;
 public class Player extends GameObject {
     //Singleton
     private static Player instance;
+
     public static Player Instance()
     {
         if(instance == null)
@@ -48,11 +48,10 @@ public class Player extends GameObject {
     private float velocity = 4;
     private float defaultVelocity;
     private int direction = 0;
-
     private Point referencePoint;
-
-
     public String playerName;
+    public float playerFinalTime;
+    public float time = 0;
     // Animation
     private enum Animations { idle, walking, falling, stunned}
     private Animations curAnim;
@@ -69,13 +68,20 @@ public class Player extends GameObject {
     {
         canMove = _value;
     }
-
+    public float getSpeed()
+    {
+        return speed;
+    }
+    public Point getReferencePoint()
+    {
+        return referencePoint;
+    }
 
     public Player(Point _pos) {
         super();
         pos = _pos;
         rect = new Rect(100,100,200,200);
-        speed = 0.8f;
+        speed = 0.5f;
         defaultVelocity = velocity;
         colour = new Color().GREEN;
 
@@ -87,18 +93,12 @@ public class Player extends GameObject {
         StaticValues.Instance().vibrator = (Vibrator) StaticValues.Instance().staticContext.getSystemService(Context.VIBRATOR_SERVICE);
     }
 
-    public Point getReferencePoint()
-    {
-        return referencePoint;
-    }
-
-
-
-
 
     @Override
     public void update()
     {
+        time += 0.05f;
+
         referencePoint = new Point(0,0);
         pos = new Point(StaticValues.Instance().SCREEN_WIDTH / 2 -(bitmapWidth/2), StaticValues.Instance().SCREEN_HEIGHT / 2);
 
@@ -119,7 +119,7 @@ public class Player extends GameObject {
 
         else if(timer <= 0 && slowed == true)
         {
-            speed = 0.8f;
+            speed = 0.5f;
             slowed = false;
         }
 
@@ -133,17 +133,18 @@ public class Player extends GameObject {
             if(direction != 0) {
                 switch (direction) {
                     case -1:
-                        GameView.moveObjectX((int)(speed * StaticValues.Instance().deltaTime));
-                        referencePoint.x += (int)(speed * StaticValues.Instance().deltaTime);
 
-//                        pos.x -= speed * StaticValues.deltaTime;
+                        referencePoint.x += (int)(speed * StaticValues.Instance().deltaTime);
                         sourceY = bitmapHeight;
+                        GameView.moveObjectX((int)(speed * StaticValues.Instance().deltaTime));
+//                        pos.x -= speed * StaticValues.deltaTime;
                         break;
                     case 1:
-                        GameView.moveObjectX((int)-(speed * StaticValues.Instance().deltaTime));
+
                         referencePoint.x -= (int)(speed * StaticValues.Instance().deltaTime);
 //                        pos.x += speed * StaticValues.Instance().deltaTime;
                         sourceY = 0;
+                        GameView.moveObjectX((int)-(speed * StaticValues.Instance().deltaTime));
                         break;
                 }
             }
@@ -255,22 +256,25 @@ public class Player extends GameObject {
 
     private void stunTimer()
     {
+        speed = 0;
+
         if(StaticValues.Instance().currentTime > stunDelay)
         {
             isStunned = false;
             canMove = true;
+            speed = 0.5f;
         }
     }
 
     public void sprint()
     {
-        speed = 2;
+        speed = 1.5f;
         animationDelay = 25;
 
         if(StaticValues.Instance().currentTime > sprintTimer)
         {
             isSprinting = false;
-            speed = 0.8f;
+            speed = 0.5f;
             animationDelay = 75;
         }
     }
@@ -283,7 +287,7 @@ public class Player extends GameObject {
         {
             if(_other instanceof Mud)
             {
-                speed = 0.4f;
+                speed = 0.1f;
                 slowed = true;
                 timer = 15;
             }
@@ -321,7 +325,7 @@ public class Player extends GameObject {
 
             if(_other instanceof Goal)
             {
-                StaticValues.Instance().gameFinished = true;
+                ((Goal) _other).canCollect(this);
             }
 
             if(_other instanceof Fireball && ((Fireball)_other).owner != this)
@@ -447,9 +451,4 @@ public class Player extends GameObject {
         currentPowerup.use(this);
         PowerUpButton.getInstance().state = PowerUpButton.btnStates.empty;
     }
-
-
-
-
-//go.getRect().contains(r)
 }

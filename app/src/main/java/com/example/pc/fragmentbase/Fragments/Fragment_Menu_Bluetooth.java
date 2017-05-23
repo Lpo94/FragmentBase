@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pc.fragmentbase.Other.BTService;
+import com.example.pc.fragmentbase.Other.MainActivity;
 import com.example.pc.fragmentbase.Other.StaticValues;
 import com.example.pc.fragmentbase.R;
 
@@ -69,7 +70,7 @@ public class Fragment_Menu_Bluetooth extends Fragment {
         if(resultCode == RESULT_CANCELED)
         {
             Toast.makeText(getContext(), "Bluetooth needs to be enabled", Toast.LENGTH_LONG).show();
-            getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_ModeSelection()).commit();
+            ((MainActivity)getActivity()).changeFragment("MenuModeSelection");
         }
     }
 
@@ -211,7 +212,7 @@ public class Fragment_Menu_Bluetooth extends Fragment {
                 break;
 
             case "Back":
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_ModeSelection()).commit();
+                ((MainActivity)getActivity()).changeFragment("MenuModeSelection");
                 Server.setVisibility(view.INVISIBLE);
                 ConnectToServer.setVisibility(view.INVISIBLE);
                 Pair.setVisibility(view.INVISIBLE);

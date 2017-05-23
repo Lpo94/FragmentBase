@@ -13,7 +13,6 @@ import com.example.pc.fragmentbase.MapObjects.Ground;
 import com.example.pc.fragmentbase.MapObjects.Mud;
 import com.example.pc.fragmentbase.MapObjects.Platform;
 import com.example.pc.fragmentbase.MapObjects.PowerUp;
-import com.example.pc.fragmentbase.MapObjects.PowerUpButton;
 import com.example.pc.fragmentbase.MapObjects.RaceCountdownTimer;
 import com.example.pc.fragmentbase.R;
 
@@ -106,8 +105,10 @@ public class LevelCreator {
 
                             StaticValues.Instance().allPlayers.add(Player.Instance());
 
+                            Goal testGoal2 = new Goal(new Point(new Point(StaticValues.Instance().SCREEN_WIDTH / 2 - 100, StaticValues.Instance().SCREEN_HEIGHT / 2 + 1000)));
+                            testLevel.add(testGoal2);
 
-                            RaceCountdownTimer counter = new RaceCountdownTimer(Player.Instance(), new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 5));
+                            RaceCountdownTimer counter = new RaceCountdownTimer(new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 5));
                             testLevel.add(counter);
 
                             break;

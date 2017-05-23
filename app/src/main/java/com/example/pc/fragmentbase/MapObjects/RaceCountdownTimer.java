@@ -14,12 +14,9 @@ import com.example.pc.fragmentbase.Other.StaticValues;
 
 public class RaceCountdownTimer extends GameObject
 {
-    // Player _player skal senere laves til at tage en liste med players så vi i multiplayer kan sørge for at dette sker for dem alle
-    private Player player;
 
-    public RaceCountdownTimer(Player _player, Point _pos)
+    public RaceCountdownTimer(Point _pos)
     {
-        player = _player;
         pos = _pos;
         rowsInSheet = 1;
         columnsInSheet = 6;
@@ -46,7 +43,7 @@ public class RaceCountdownTimer extends GameObject
 
                 if(currentFrame >= frameCount)
                 {
-                    player.setCanmove(true);
+                    Player.Instance().setCanmove(true);
                     StaticValues.Instance().gameObjects.remove(this);
                 }
             }

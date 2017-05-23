@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.pc.fragmentbase.Other.MainActivity;
 import com.example.pc.fragmentbase.R;
 
 /**
@@ -46,7 +47,7 @@ public class Fragment_HowToPlay extends Fragment {
         view.findViewById(R.id.Back_Button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_Main()).commit();
+                ((MainActivity)getActivity()).changeFragment("MainMenu");
             }
         });
 

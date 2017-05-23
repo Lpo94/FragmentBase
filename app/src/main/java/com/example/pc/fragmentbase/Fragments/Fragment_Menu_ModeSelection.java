@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.example.pc.fragmentbase.Other.BTService;
 import com.example.pc.fragmentbase.Other.GameState;
+import com.example.pc.fragmentbase.Other.MainActivity;
 import com.example.pc.fragmentbase.Other.StaticValues;
 import com.example.pc.fragmentbase.R;
 
@@ -36,7 +37,7 @@ public class Fragment_Menu_ModeSelection extends Fragment {
             @Override
             public void onClick(View v)
             {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Game()).commit();
+                ((MainActivity)getActivity()).changeFragment("Game");
                 StaticValues.Instance().gameState = GameState.SinglePlayer;
             }
         });
@@ -47,7 +48,7 @@ public class Fragment_Menu_ModeSelection extends Fragment {
             public void onClick(View v)
             {
                 StaticValues.Instance().gameState = GameState.BluetoothMultiplayer;
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_Bluetooth()).commit();
+                ((MainActivity)getActivity()).changeFragment("MenuBluetooth");
             }
         });
 
@@ -56,7 +57,7 @@ public class Fragment_Menu_ModeSelection extends Fragment {
             @Override
             public void onClick(View v)
             {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_Main()).commit();
+                ((MainActivity)getActivity()).changeFragment("MainMenu");
             }
         });
 
