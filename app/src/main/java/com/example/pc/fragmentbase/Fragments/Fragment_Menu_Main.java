@@ -1,14 +1,18 @@
 package com.example.pc.fragmentbase.Fragments;
 
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pc.fragmentbase.Other.MainActivity;
 import com.example.pc.fragmentbase.Other.SoundEffectManager;
+import com.example.pc.fragmentbase.Other.StaticValues;
 import com.example.pc.fragmentbase.R;
 
 
@@ -16,8 +20,6 @@ import com.example.pc.fragmentbase.R;
  * A simple {@link Fragment} subclass.
  */
 public class Fragment_Menu_Main extends Fragment {
-
-    static MediaPlayer music;
 
     public Fragment_Menu_Main() {
         // Required empty public constructor
@@ -27,7 +29,7 @@ public class Fragment_Menu_Main extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-
+        StaticValues.Instance().vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
         View view = inflater.inflate(R.layout.fragment_menu_main, container, false);
 
         view.findViewById(R.id.Start_button).setOnClickListener(new View.OnClickListener()
@@ -35,8 +37,8 @@ public class Fragment_Menu_Main extends Fragment {
             @Override
             public void onClick(View v)
             {
-/*                getFragmentManager().popBackStack();*/
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Menu_ModeSelection()).commit();
+                StaticValues.Instance().vibrator.vibrate(100);
             }
         });
 
@@ -46,6 +48,7 @@ public class Fragment_Menu_Main extends Fragment {
             public void onClick(View v)
             {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_HowToPlay()).commit();
+                StaticValues.Instance().vibrator.vibrate(100);
             }
         });
 
@@ -61,5 +64,4 @@ public class Fragment_Menu_Main extends Fragment {
 
         return  view;
     }
-
 }

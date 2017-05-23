@@ -3,6 +3,7 @@ package com.example.pc.fragmentbase.Other;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
