@@ -56,6 +56,7 @@ public class BTService {
      * This thread runs while listening for incoming connections. It behaves
      * like a server-side client. It runs until a connection is accepted
      * (or until cancelled).
+     * Class Found At https://developer.android.com/guide/topics/connectivity/bluetooth.html
      */
     private class AcceptThread extends Thread {
 
@@ -118,6 +119,7 @@ public class BTService {
      * This thread runs while attempting to make an outgoing connection
      * with a device. It runs straight through; the connection either
      * succeeds or fails.
+     * Class Found At https://developer.android.com/guide/topics/connectivity/bluetooth.html
      */
     private class ConnectThread extends Thread {
         private BluetoothSocket mmSocket;
@@ -184,6 +186,7 @@ public class BTService {
     /**
      * Start the chat service. Specifically start AcceptThread to begin a
      * session in listening (server) mode. Called by the Activity onResume()
+     * Method Found At https://developer.android.com/guide/topics/connectivity/bluetooth.html
      */
     public synchronized void start() {
         Log.d(TAG, "start");
@@ -217,10 +220,7 @@ public class BTService {
             mConnectedThread = null;
         }
     }
-    /**
-     AcceptThread starts and sits waiting for a connection.
-     Then ConnectThread starts and attempts to make a connection with the other devices AcceptThread.
-     **/
+
 
     public void startClient(BluetoothDevice device,UUID uuid){
         Log.d(TAG, "startClient: Started.");
@@ -229,13 +229,14 @@ public class BTService {
         mProgressDialog = ProgressDialog.show(mContext,"Connecting Bluetooth"
                 ,"Please Wait...",true);
 
-        mConnectThread = new ConnectThread(device, uuid);
+            mConnectThread = new ConnectThread(device, uuid);
         mConnectThread.start();
     }
 
     /**
      Finally the ConnectedThread which is responsible for maintaining the BTConnection, Sending the data, and
      receiving incoming data through input/output streams respectively.
+     Class Found At https://developer.android.com/guide/topics/connectivity/bluetooth.html
      **/
     private class ConnectedThread extends Thread {
         private final BluetoothSocket mmSocket;
@@ -269,7 +270,7 @@ public class BTService {
         }
 
         public void run(){
-            byte[] buffer = new byte[1024];  // buffer store for the stream
+            byte[] buffer;  // buffer store for the stream
 
             int bytes; // bytes returned from read()
 
@@ -277,6 +278,7 @@ public class BTService {
             while (true) {
                 // Read from the InputStream
                 try {
+                    buffer = new byte[1024];
                     bytes = mmInStream.read(buffer);
                     String incomingMessage = new String(buffer, 0, bytes);
 
@@ -328,8 +330,10 @@ public class BTService {
         // Create temporary object
         ConnectedThread r;
 
+        String i  = new String(out);
+
         // Synchronize a copy of the ConnectedThread
-        Log.d(TAG, "write: Write Called.");
+        Log.d(TAG, "write: Write Called. Message:"+i);
         //perform the write
         mConnectedThread.write(out);
     }
@@ -337,15 +341,22 @@ public class BTService {
     public void handleMessage(String _msg)
     {
         Intent incomingMessageIntent;
-        String[] temp = _msg.split("-");
+        String[] temp = _msg.split("/");
 
         switch (temp[0])
         {
             case "BluetoothMessage":
-                incomingMessageIntent = new Intent("IncomingMessage");
+                incomingMessageIntent = new Intent("IncomingBTMessage");
                 incomingMessageIntent.putExtra("theMessage", temp[1]);
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(incomingMessageIntent);
                 break;
+            case "PlayerDifference":
+                incomingMessageIntent = new Intent("PlayerPos");
+                incomingMessageIntent.putExtra("xPos", temp[1]);
+                incomingMessageIntent.putExtra("yPos", temp[2]);
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(incomingMessageIntent);
+                break;
+
 
         }
 

@@ -64,8 +64,5 @@ public class Platform extends GameObject {
         paint.setColor(Color.CYAN);
         _canvas.drawRect(rect,paint);
 
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(48);
-        _canvas.drawText("X:" + pos.x + " Y:" + pos.y,pos.x,pos.y,paint);
     }
 }

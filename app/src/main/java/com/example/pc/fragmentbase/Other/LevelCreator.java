@@ -2,9 +2,11 @@ package com.example.pc.fragmentbase.Other;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.Rect;
 
+import com.example.pc.fragmentbase.MapObjects.BackgroundPicture;
 import com.example.pc.fragmentbase.MapObjects.FireObject;
 import com.example.pc.fragmentbase.MapObjects.Goal;
 import com.example.pc.fragmentbase.MapObjects.Ground;
@@ -13,6 +15,7 @@ import com.example.pc.fragmentbase.MapObjects.Platform;
 import com.example.pc.fragmentbase.MapObjects.PowerUp;
 import com.example.pc.fragmentbase.MapObjects.PowerUpButton;
 import com.example.pc.fragmentbase.MapObjects.RaceCountdownTimer;
+import com.example.pc.fragmentbase.R;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -93,17 +96,18 @@ public class LevelCreator {
                 for(int x = 1; x <= mapLength-1;x++) {
                     switch (ary[x]) {
                         case "A":
-                            Player player = new Player(new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 2));
+
 
                             if(StaticValues.Instance().gameState == GameState.BluetoothMultiplayer)
                             {
                                 StaticValues.Instance().btPlayer = new MultiplayerObject(new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 2));
+
                             }
-                            StaticValues.Instance().globalPlayer = player;
-                            StaticValues.Instance().allPlayers.add(player);
+
+                            StaticValues.Instance().allPlayers.add(Player.Instance());
 
 
-                            RaceCountdownTimer counter = new RaceCountdownTimer(player, new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 5));
+                            RaceCountdownTimer counter = new RaceCountdownTimer(Player.Instance(), new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 5));
                             testLevel.add(counter);
 
                             break;
@@ -176,9 +180,13 @@ public class LevelCreator {
                     xPos++;
                 }
 
-                }
+        }
                 currentLevel = testLevel;
 
+        BackgroundPicture bkGround = new BackgroundPicture
+                (BitmapFactory.decodeResource(StaticValues.Instance().staticContext.getResources(), R.drawable.fire));
+
+        currentLevel.add(0, bkGround);
         for(GameObject go: currentLevel)
         {
             StaticValues.Instance().gameObjects.add(go);

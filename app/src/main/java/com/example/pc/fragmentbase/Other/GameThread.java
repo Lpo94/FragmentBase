@@ -22,6 +22,7 @@ public class GameThread extends Thread {
         super();
         surfaceHolder = _surfaceHolder;
         gameView = _gameView;
+        StaticValues.Instance().gameFinished = false;
     }
 
     public void setRunning(boolean _running)

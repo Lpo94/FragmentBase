@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 
+import com.example.pc.fragmentbase.Fragments.Fragment_Endscreen;
 import com.example.pc.fragmentbase.Fragments.Fragment_Game;
 import com.example.pc.fragmentbase.Fragments.Fragment_Menu_Main;
 import com.example.pc.fragmentbase.R;
@@ -71,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
     public void StartGame(View view)
     {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Game()).addToBackStack(null).commit();
+    }
+
+    public void endGame()
+    {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Endscreen()).commit();
     }
 
 

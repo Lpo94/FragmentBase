@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Vibrator;
 
+import com.example.pc.fragmentbase.Fragments.Fragment_Game;
 import com.example.pc.fragmentbase.MapObjects.FireObject;
 import com.example.pc.fragmentbase.MapObjects.Fireball;
 import com.example.pc.fragmentbase.MapObjects.Goal;
@@ -17,11 +18,25 @@ import com.example.pc.fragmentbase.MapObjects.PowerUp;
 import com.example.pc.fragmentbase.MapObjects.PowerUpButton;
 import com.example.pc.fragmentbase.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by LP on 19-04-2017.
  */
 
 public class Player extends GameObject {
+    //Singleton
+    private static Player instance;
+    public static Player Instance()
+    {
+        if(instance == null)
+        {
+            instance = new Player(new Point(StaticValues.Instance().SCREEN_WIDTH / 2, StaticValues.Instance().SCREEN_HEIGHT / 2));
+        }
+
+        return instance;
+    }
+
     // Generel
     public int colour;
     public boolean canMove;
@@ -32,6 +47,9 @@ public class Player extends GameObject {
     private float velocity = 4;
     private float defaultVelocity;
     private int direction = 0;
+
+    private Point referencePoint;
+
     private Vibrator vibrator = (Vibrator)StaticValues.Instance().staticContext.getSystemService(StaticValues.Instance().staticContext.VIBRATOR_SERVICE);
     public String playerName;
     // Animation
@@ -67,10 +85,20 @@ public class Player extends GameObject {
         currentPowerup = new PowerUp(new Point(0, 0), PowerUp.PowerUpType.none);
     }
 
+    public Point getReferencePoint()
+    {
+        return referencePoint;
+    }
+
+
+
+
+
     @Override
     public void update()
     {
-         pos = new Point(StaticValues.Instance().SCREEN_WIDTH / 2 -(bitmapWidth/2), StaticValues.Instance().SCREEN_HEIGHT / 2);
+        referencePoint = new Point(0,0);
+        pos = new Point(StaticValues.Instance().SCREEN_WIDTH / 2 -(bitmapWidth/2), StaticValues.Instance().SCREEN_HEIGHT / 2);
 
         manageAnimationStates();
 
@@ -104,11 +132,14 @@ public class Player extends GameObject {
                 switch (direction) {
                     case -1:
                         GameView.moveObjectX((int)(speed * StaticValues.Instance().deltaTime));
+                        referencePoint.x += (int)(speed * StaticValues.Instance().deltaTime);
+
 //                        pos.x -= speed * StaticValues.deltaTime;
                         sourceY = bitmapHeight;
                         break;
                     case 1:
                         GameView.moveObjectX((int)-(speed * StaticValues.Instance().deltaTime));
+                        referencePoint.x -= (int)(speed * StaticValues.Instance().deltaTime);
 //                        pos.x += speed * StaticValues.Instance().deltaTime;
                         sourceY = 0;
                         break;
@@ -134,12 +165,14 @@ public class Player extends GameObject {
             if(falling && !jumping)
             {
                 GameView.moveObjectY((int)-(0.5f * StaticValues.Instance().deltaTime));
+                referencePoint.y -= (int)(0.5f * StaticValues.Instance().deltaTime);
 //                pos.y += StaticValues.Instance().WORLD_GRAVITY * StaticValues.Instance().deltaTime;
             }
 
             if(jumping)
             {
                 GameView.moveObjectY((int)+(velocity * StaticValues.Instance().deltaTime));
+                referencePoint.y += (int)(velocity * StaticValues.Instance().deltaTime);
 //                pos.y -= velocity * StaticValues.Instance().deltaTime;
                 velocity -= StaticValues.Instance().WORLD_GRAVITY * StaticValues.Instance().deltaTime;
 
@@ -286,7 +319,7 @@ public class Player extends GameObject {
 
             if(_other instanceof Goal)
             {
-                ((Goal) _other).canCollect(this);
+                StaticValues.Instance().gameFinished = true;
             }
 
             if(_other instanceof Fireball && ((Fireball)_other).owner != this)
@@ -316,7 +349,7 @@ public class Player extends GameObject {
                     {
                         currentPowerup = new PowerUp(pos, PowerUp.PowerUpType.speed);
                         PowerUpButton.getInstance().state = PowerUpButton.btnStates.speed;
-                        
+
                     }
                 }
             }
@@ -345,7 +378,7 @@ public class Player extends GameObject {
             {
                 if (go.getRect() != null)
                 {
-                    Rect  r = new Rect(pos.x, pos.y+bitmapHeight/2, pos.x+bitmapWidth, pos.y+bitmapHeight);
+                    Rect  r = new Rect(pos.x+bitmapWidth/4, pos.y+bitmapHeight/2, pos.x+bitmapWidth/2, pos.y+bitmapHeight);
                     if (Rect.intersects(go.getRect(),r))
                     {
                         return true;

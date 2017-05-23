@@ -15,7 +15,7 @@ public class MultiplayerObject extends GameObject    {
         bitmap = BitmapFactory.decodeResource(StaticValues.Instance().staticContext.getResources(), R.drawable.player_giraf);
 
         pos = _pos;
-        rowsInSheet = 1;
+        rowsInSheet = 2;
         columnsInSheet = 14;
         bitmapHeight = bitmap.getHeight() / rowsInSheet;
         bitmapWidth = bitmap.getWidth() / columnsInSheet;

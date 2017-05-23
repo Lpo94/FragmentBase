@@ -41,7 +41,7 @@ public class StaticValues {
 
 
     //Player
-    public Player globalPlayer;
+
     public MultiplayerObject btPlayer;
     public ArrayList<Player> allPlayers;
     public ArrayList<Player> finishedPlayers;
@@ -56,10 +56,6 @@ public class StaticValues {
     public ArrayList<GameObject> objectsToRemove;
 
     public Fragment fragment;
-
-    public FragmentManager fragmentManager;
-
-    public FragmentTransaction fragmentTransaction;
 
 
     // Ints
@@ -95,12 +91,6 @@ public class StaticValues {
 
     public BTService mBTService;
 
-    public BluetoothAdapter BA;
 
-    public BluetoothDevice connectedDevice;
-
-    public String connectedDeviceAdress;
-
-    public final UUID MY_UUID_INSECURE =UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
 
 }

@@ -112,30 +112,32 @@ public abstract class GameObject {
     {
         if(_other != this && _other.rect != null) {
             if (Rect.intersects(rect, _other.getRect())) {
-                if (!colliders.contains(_other)) {
-                    colliders.add(_other);
-                }
+                doCollision(_other);
+            }
+            else if(rect.contains(_other.getRect()))
+            {
+                doCollision(_other);
             }
         }
 
         return false;
     }
 
-    public void onCollisionExit()
-    {
-        for(GameObject go:colliders) {
-            if (!rect.contains(go.getRect())) {
-                    colliders.remove(go);
-            }
-        }
+//    public void onCollisionExit()
+//    {
+//        for(GameObject go:colliders) {
+//            if (!rect.contains(go.getRect())) {
+//                    colliders.remove(go);
+//            }
+//        }
+//
+//    }
 
-    }
-
-    public void onCollisionStay(GameObject _other)
-    {
-        for(GameObject go:colliders)
-        {
-            doCollision(go);
-        }
-    }
+//    public void onCollisionStay(GameObject _other)
+//    {
+//        for(GameObject go:colliders)
+//        {
+//            doCollision(go);
+//        }
+//    }
 }

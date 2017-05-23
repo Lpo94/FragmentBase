@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 
 import com.example.pc.fragmentbase.Other.GameObject;
+import com.example.pc.fragmentbase.Other.Player;
 import com.example.pc.fragmentbase.Other.StaticValues;
 import com.example.pc.fragmentbase.R;
 
@@ -36,7 +37,7 @@ public class PowerUpButton extends GameObject
         bitmapHeight = bitmap.getHeight() / rowsInSheet;
         bitmapWidth = bitmap.getWidth() / columnsInSheet;
         frameCount = 3;
-        pos = new Point(StaticValues.Instance().SCREEN_WIDTH / 2 - (bitmapWidth / 2), calcPosition(StaticValues.Instance().globalPlayer.getPos().y));
+        pos = new Point(StaticValues.Instance().SCREEN_WIDTH / 2 - (bitmapWidth / 2), calcPosition(Player.Instance().getPos().y));
     }
 
     private int calcPosition(int _playerY)

@@ -17,7 +17,7 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener{
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        StaticValues.Instance().globalPlayer.playerJump();
+        Player.Instance().playerJump();
         return true;
     }
 
