@@ -1,5 +1,6 @@
 package com.example.pc.fragmentbase.Other;
 
+import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -50,7 +51,7 @@ public class Player extends GameObject {
 
     private Point referencePoint;
 
-    private Vibrator vibrator = (Vibrator)StaticValues.Instance().staticContext.getSystemService(StaticValues.Instance().staticContext.VIBRATOR_SERVICE);
+
     public String playerName;
     // Animation
     private enum Animations { idle, walking, falling, stunned}
@@ -83,6 +84,7 @@ public class Player extends GameObject {
         setPlayerSprite(getPlayerNumber());
         curAnim = Animations.idle;
         currentPowerup = new PowerUp(new Point(0, 0), PowerUp.PowerUpType.none);
+        StaticValues.Instance().vibrator = (Vibrator) StaticValues.Instance().staticContext.getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     public Point getReferencePoint()
@@ -325,13 +327,13 @@ public class Player extends GameObject {
             if(_other instanceof Fireball && ((Fireball)_other).owner != this)
             {
                 startingStun = true;
-                vibrator.vibrate(500);
+                StaticValues.Instance().vibrator.vibrate(100);
             }
 
             if(_other instanceof FireObject)
             {
                 startingStun = true;
-                vibrator.vibrate(500);
+                StaticValues.Instance().vibrator.vibrate(100);
                 ((FireObject)_other).removeThis();
             }
 

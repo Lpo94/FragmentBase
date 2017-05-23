@@ -111,11 +111,13 @@ public class LevelCreator {
                             testLevel.add(counter);
 
                             break;
+
                         case "B":
                             Mud mud = new Mud(new Point(StaticValues.Instance().gridWidth * xPos, StaticValues.Instance().gridHeight * yPos));
                             testLevel.add(mud);
 
                             break;
+
                         case "C":
                             if(groundCheckAroundMe(x, "C") != -1) {
                                 int multiX = groundCheckAroundMe(x, "C");
@@ -124,11 +126,6 @@ public class LevelCreator {
                             }
                             break;
 
-                        case "D":
-
-                                PowerUp testSpeedPUP2 = new PowerUp(new Point(700, 500), PowerUp.PowerUpType.speed);
-                                StaticValues.Instance().gameObjects.add(testSpeedPUP2);
-                            break;
                         case"E":
                             if(groundCheckAroundMe(x, "E") != -1) {
                             int multiX = groundCheckAroundMe(x, "E");

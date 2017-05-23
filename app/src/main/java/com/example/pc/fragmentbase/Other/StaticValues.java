@@ -3,6 +3,7 @@ package com.example.pc.fragmentbase.Other;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -68,6 +69,8 @@ public class StaticValues {
     public int gridWidth = 60;
 
     public int gridHeight = 60;
+
+    public Vibrator vibrator;
 
     //Floats
     public float WORLD_SPEED;
